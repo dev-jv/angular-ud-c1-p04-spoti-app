@@ -12,6 +12,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 import {ROUTES} from './app.routes';
 
+import { NoimagePipe } from './pipes/noimage.pipe';
+
 // import { SpotifyService } from './services/spotify.service';
 
 @NgModule({
@@ -21,6 +23,7 @@ import {ROUTES} from './app.routes';
     SearchComponent,
     ArtistComponent,
     NavbarComponent,
+    NoimagePipe,
   ],
   imports: [
     BrowserModule,
