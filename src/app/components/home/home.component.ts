@@ -10,6 +10,7 @@ import {SpotifyService} from '../../services/spotify.service';
 export class HomeComponent {
 
   newSongs: any[] = [];
+  loading: boolean;
 
   constructor(private spotify: SpotifyService) {
     // ------------------------- <> 3
@@ -23,11 +24,14 @@ export class HomeComponent {
     //   });
 
     // -------------------------- <> 5.6.7
+    this.loading = true;
+
     this.spotify.getNewReleases()
       .subscribe( (data: any) => {
         // console.log(data.albums.items);
         console.log(data);
         this.newSongs = data;
+        this.loading = false;
       });
   }
 }
