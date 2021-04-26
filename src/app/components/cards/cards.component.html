@@ -1,5 +1,5 @@
 <div class="card-columns animated fadeIn">
-  <div *ngFor="let item of items" class="card">
+  <div (click)="viewArtist(item)" *ngFor="let item of items" class="card puntero">
     <!--    <img class="card-img-top" [src]="item.images[0].url" alt="Card image cap">-->
     <img class="card-img-top" [src]="item.images | noimage" alt="Card image cap">
     <div class="card-body">
