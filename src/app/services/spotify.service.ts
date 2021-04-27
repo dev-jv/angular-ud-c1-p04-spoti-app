@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
+import {iterator} from 'rxjs/internal-compatibility';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class SpotifyService {
   getQuery( query: string ): any {
     const url = `https://api.spotify.com/v1/${ query }`;
     const headers = new HttpHeaders({
-      Authorization: 'Bearer BQB-DO7WivMmcSuQdV6OX9DAdGWXAgHhkmtC1q96sUu8OGt-mEuQ-7c9CUTfZyZmu1dfDBEHuvPBXE19aG0'
+      Authorization: 'Bearer BQBLsK7Bz9GFHzNWmJ71b0fpUwkUUPn0ypNzEdCIhyDru_fRBjRs-BU-revL9ZrfoCM-nNXZ05gwi-HiWyY'
     });
     return this.http.get(url, { headers });
   }
@@ -68,9 +69,12 @@ export class SpotifyService {
 
   getArtist(id: string): any{
     return this.getQuery(`artists/${id}`);
-      // .pipe( map( data => {
-        // @ts-ignore
-        // return data.artists.items;
-      // }));
+  }
+
+  getTopTracks(id: string): any{
+    return this.getQuery(`artists/${id}/top-tracks?market=us`)
+      .pipe( map( (data: any) => {
+        return data[`tracks`];
+      }));
   }
 }
